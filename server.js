@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const logger = require('./middlewares/logger');
 
 const testRoutes = require('./routes/test');
 
@@ -19,6 +20,9 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
   next();
 });
+
+//Middllewares
+app.use(logger);
 
 //ROUETS
 app.get('/',(req,res)=>{
