@@ -2,7 +2,8 @@
 
 module.exports = {
   development: {
-    client: process.env.DB_CONNECTION,
+    //it has to be here not in the .env file
+    client: 'mysql',
     connection: {
       host: process.env.DB_HOST,
       port:process.env.DB_PORT,
@@ -15,7 +16,7 @@ module.exports = {
       max: 7,
     },
     migrations: {
-      tableName: 'migrations'
+      directory: './database/migrations'
     }
   }
 };
