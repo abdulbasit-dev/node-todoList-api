@@ -7,9 +7,9 @@ module.exports = {
     connection: {
       host: process.env.DB_HOST,
       port:process.env.DB_PORT,
-      user: process.env.DB_USERNAME,
+      user: 'root',
       password: process.env.DB_PASSWORD,
-      database:process.env.DB_DATABASE,
+      database:'node_knex-starter',
     },
     pool: {
       min: 0,
@@ -17,6 +17,9 @@ module.exports = {
     },
     migrations: {
       directory: './database/migrations'
+    },
+    seeds: {
+      directory: './database/seeds'
     }
   }
 };
