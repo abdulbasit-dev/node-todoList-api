@@ -1,18 +1,41 @@
 
-![Logo](https://nodejs.org/static/images/logos/nodejs-new-pantone-white.svg)
+<p align="center"><a href="https://nodejs.org/en/" target="_blank"><img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-white.svg" width="300"></a></p>
 
 
-# Project Title
 
-A brief description of what this project does and who it's for
+# Node TodoList api
+
+a todo list that made with nodejs using knex query builder + mysql
 
 
 ## Installation
 
-Install my-project with npm
+
+- clone project
 
 ```bash
-  npm install my-project
-  cd my-project
+  git clone https://github.com/abdulbasit-dev/node-todos-api.git
+  cd node-todos-api
 ```
+- install dependencies
+
+```bash
+  npm install
+```
+- create .env file and get contnet from .env.example
+
+```bash
+  touch .env
+```
+- set up database credentials inside knexFile.js
+
+- run server.js
+
+```bash
+  nodemon run dev
+```
+
+- you are good to go 😊 happy coding
+
+
     
