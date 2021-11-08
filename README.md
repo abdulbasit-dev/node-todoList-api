@@ -29,6 +29,16 @@ a todo list that made with nodejs using knex query builder + mysql
 ```
 - set up database credentials inside knexFile.js
 
+-- run migartion and seed
+
+```bash
+  npx knex migrate:latest 
+``` 
+
+```bash
+  npx knex seed:run 
+``` 
+
 - run server.js
 
 ```bash
