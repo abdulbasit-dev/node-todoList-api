@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 require('dotenv').config();
 const logger = require('./middlewares/logger');
 
@@ -9,7 +8,8 @@ const todosRoutes = require('./routes/todos');
 //create app
 const app = express();
 const port = process.env.PORT || PORT
-app.use(bodyParser.json())
+app.use(express.json());
+
 
 // COSR handler
 app.use((req, res, next) => {
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 });
 
 //Middllewares
-app.use(logger);
+// app.use(logger);
 
 //ROUETS
 app.get('/',(req,res)=>{
