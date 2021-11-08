@@ -2,14 +2,13 @@ const express = require('express');
 require('dotenv').config();
 const logger = require('./middlewares/logger');
 
-const usersRoutes = require('./routes/users');
-const todosRoutes = require('./routes/todos');
+const userRoutes = require('./routes/userRoutes');
+const todoRoutes = require('./routes/todoRoutes');
 
 //create app
 const app = express();
-const port = process.env.PORT || PORT
+const port = process.env.PORT || PORT;
 app.use(express.json());
-
 
 // COSR handler
 app.use((req, res, next) => {
@@ -26,12 +25,21 @@ app.use((req, res, next) => {
 // app.use(logger);
 
 //ROUETS
-app.get('/',(req,res)=>{
-  return res.json(["hello from nodejs server"])
-})
+app.get('/', (req, res) => {
+  return res.json(['hello from nodejs server']);
+});
 
-app.use('/users',usersRoutes)
-app.use('/todos',todosRoutes)
+app.use('/users', userRoutes);
+app.use('/todos', todoRoutes);
+
+// this is default in case of unmatched routes
+app.use(function (req, res) {
+  res.status(404).json({
+    result: false,
+    status: 404,
+    message: 'Invalid Request',
+  });
+});
 
 //run app
-app.listen(port, ()=>console.log(`server run on port ${port}`))
+app.listen(port, () => console.log(`server run on port ${port}`));

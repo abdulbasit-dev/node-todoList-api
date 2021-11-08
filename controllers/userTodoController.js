@@ -20,7 +20,7 @@ const index = async (req, res, next) => {
 };
 
 const show = async (req, res) => {
-  id = req.params.id;
+  id = req.params.todo_id;
   const todo = await db('todos')
     .join('users', 'todos.u_id', 'users.u_id')
     .where('t_id', id);
@@ -35,6 +35,26 @@ const show = async (req, res) => {
   }
   return res.status(200).json(todo[0]);
 };
+
+const userTodos = async(req,res)=>{
+  const todos = await db('todos')
+    .where('u_id', req.params.user_id);
+  if (!todos.length) {
+    return res.status(404).json({
+      result: false,
+      message: 'the user has no todo',
+      status: 404,
+    });
+  }
+  
+  return res.status(200).json({
+    result: true,
+    message: 'all user todos',
+    status: 200,
+    total:todos.length,
+    data: todos,
+  });
+}
 
 const store = async (req, res) => {
   try {
@@ -59,7 +79,7 @@ const update = async (req, res) => {
     await db('todos').update({
      title: req.body.title,
    })
-   .where('t_id',req.params.id);
+   .where('t_id',req.params.todo_id);
 
    return res.status(200).json({
      result: true,
@@ -74,7 +94,7 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    await db('todos').where('t_id',req.params.id).del();
+    await db('todos').where('t_id',req.params.todo_id).del();
 
    return res.status(200).json({
      result: true,
@@ -95,4 +115,5 @@ module.exports = {
   store,
   destroy,
   update,
+  userTodos
 };
