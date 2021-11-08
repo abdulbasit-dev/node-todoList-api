@@ -1,8 +1,8 @@
 const express = require('express');
 const route = express.Router();
 
-const {testFunction} = require('../controllers/test');
+const {getTodos} = require('../controllers/todos');
 
-route.get('/', testFunction)
+route.get('/', getTodos)
 
 module.exports = route

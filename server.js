@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const logger = require('./middlewares/logger');
 
-const testRoutes = require('./routes/test');
+const usersRoutes = require('./routes/users');
+const todosRoutes = require('./routes/todos');
 
 //create app
 const app = express();
@@ -29,6 +30,8 @@ app.get('/',(req,res)=>{
   return res.json(["hello from nodejs server"])
 })
 
-app.use('/test',testRoutes)
+app.use('/users',usersRoutes)
+app.use('/todos',todosRoutes)
 
+//run app
 app.listen(port, ()=>console.log(`server run on port ${port}`))
